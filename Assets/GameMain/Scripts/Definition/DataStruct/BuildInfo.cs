@@ -26,5 +26,29 @@ namespace StarForce
             get;
             set;
         }
+
+        public string WindowsAppUrl
+        {
+            get;
+            set;
+        }
+
+        public string MacOSAppUrl
+        {
+            get;
+            set;
+        }
+
+        public string IOSAppUrl
+        {
+            get;
+            set;
+        }
+
+        public string AndroidAppUrl
+        {
+            get;
+            set;
+        }
     }
 }

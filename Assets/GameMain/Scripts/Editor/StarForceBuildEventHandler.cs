@@ -9,7 +9,7 @@ using GameFramework;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityGameFramework.Editor.AssetBundleTools;
+using UnityGameFramework.Editor.ResourceTools;
 
 namespace StarForce.Editor
 {
@@ -23,8 +23,8 @@ namespace StarForce.Editor
             }
         }
 
-        public void PreprocessAllPlatforms(string productName, string companyName, string gameIdentifier,
-            string applicableGameVersion, int internalResourceVersion, string unityVersion, BuildAssetBundleOptions buildOptions, bool zip,
+        public void OnPreprocessAllPlatforms(string productName, string companyName, string gameIdentifier,
+            string gameFrameworkVersion, string unityVersion, string applicableGameVersion, int internalResourceVersion, BuildAssetBundleOptions buildOptions, bool zip,
             string outputDirectory, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath, string buildReportPath)
         {
             string streamingAssetsPath = Utility.Path.GetRegularPath(Path.Combine(Application.dataPath, "StreamingAssets"));
@@ -42,17 +42,25 @@ namespace StarForce.Editor
             Utility.Path.RemoveEmptyDirectory(streamingAssetsPath);
         }
 
-        public void PostprocessAllPlatforms(string productName, string companyName, string gameIdentifier,
-            string applicableGameVersion, int internalResourceVersion, string unityVersion, BuildAssetBundleOptions buildOptions, bool zip,
+        public void OnPostprocessAllPlatforms(string productName, string companyName, string gameIdentifier,
+            string gameFrameworkVersion, string unityVersion, string applicableGameVersion, int internalResourceVersion, BuildAssetBundleOptions buildOptions, bool zip,
             string outputDirectory, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath, string buildReportPath)
         {
         }
 
-        public void PreprocessPlatform(Platform platform, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath)
+        public void OnPreprocessPlatform(Platform platform, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath)
         {
         }
 
-        public void PostprocessPlatform(Platform platform, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath, bool isSuccess)
+        public void OnBuildAssetBundlesComplete(Platform platform, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath, AssetBundleManifest assetBundleManifest)
+        {
+        }
+
+        public void OnOutputUpdatableVersionListData(Platform platform, string versionListPath, int versionListLength, int versionListHashCode, int versionListZipLength, int versionListZipHashCode)
+        {
+        }
+
+        public void OnPostprocessPlatform(Platform platform, string workingPath, bool outputPackageSelected, string outputPackagePath, bool outputFullSelected, string outputFullPath, bool outputPackedSelected, string outputPackedPath, bool isSuccess)
         {
             if (!outputPackageSelected)
             {
